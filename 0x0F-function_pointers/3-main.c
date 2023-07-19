@@ -1,47 +1,34 @@
 #include "3-calc.h"
+#include "function_pointers.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 /**
- * main - performs simple operations
- * @argc: argument count
- * @argv: argument vector
- * Return: 0 on success, 98 on failure
+ * main - a function that gives the result of the operation
+ * @argv: number of arguments
+ * @argc: array of arguments
+ *
+ * Return: always 0
  */
+
 int main(int argc, char *argv[])
 {
-	int a, b, result;
-	int (*op_func)(int, int);
+	int a, b;
+	char *operation;
 
-	/* check for correct number of arguments */
 	if (argc != 4)
 	{
-		printf("Error\n");
-		exit(98);
+	printf("Error\n");
+	exit(98);
 	}
-
-	/* get numbers to operate on */
 	a = atoi(argv[1]);
+	operation = argv[2];
 	b = atoi(argv[3]);
-
-	/* check for division or mod by 0 */
-	if ((argv[2][0] == '/' || argv[2][0] == '%') && b == 0)
+	if (get_op_func(operation) == NULL || operation[1] != '\0')
 	{
-		printf("Error\n");
-		exit(100);
+	printf("Error\n");
+	exit(99);
 	}
-
-	/* get the appropriate function pointer */
-	op_func = get_op_func(argv[2]);
-	if (op_func == NULL)
-	{
-		printf("Error\n");
-		exit(99);
-	}
-
-	/* perform the operation */
-	result = op_func(a, b);
-	printf("%d\n", result);
-
+	printf("%d\n", get_op_func(operation)(a, b));
 	return (0);
 }

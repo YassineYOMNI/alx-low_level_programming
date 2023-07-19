@@ -1,57 +1,78 @@
 #include "3-calc.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * op_add - adds two integers
- * @a: first integer
- * @b: second integer
- * Return: sum of a and b
+ * op_add - a function that adds two numbers
+ * @a: first number
+ * @b: second number
+ *
+ * Return: the sum
  */
+
 int op_add(int a, int b)
 {
 	return (a + b);
 }
 
 /**
- * op_sub - subtracts two integers
- * @a: first integer
- * @b: second integer
- * Return: difference of a and b
+ * op_sub - a function that substracts two numbers
+ * @a: first number
+ * @b: second number
+ *
+ * Return: the difference
  */
+
 int op_sub(int a, int b)
 {
 	return (a - b);
 }
 
 /**
- * op_mul - multiplies two integers
- * @a: first integer
- * @b: second integer
- * Return: product of a and b
+ * op_mul - a function that multiplies two numbers
+ * @a: first number
+ * @b: second number
+ *
+ * Return: the multiplication
  */
+
 int op_mul(int a, int b)
 {
 	return (a * b);
 }
 
 /**
- * op_div - divides two integers
- * @a: first integer
- * @b: second integer
- * Return: result of the division of a by b
+ * op_div - a function that divides two numbers
+ * @a: first number
+ * @b: second number
+ *
+ * Return: the division
  */
+
 int op_div(int a, int b)
 {
-	/* todo: handle division by 0 */
+	if (b == 0)
+	{
+	printf("Error\n");
+	exit(100);
+	}
 	return (a / b);
 }
 
 /**
- * op_mod - computes the remainder of the division of two integers
- * @a: first integer
- * @b: second integer
- * Return: remainder of the division of a by b
+ * op_mod - a function that calculates the module of two numbers
+ * @a: first number
+ * @b: second number
+ *
+ * Return: the module
  */
+
 int op_mod(int a, int b)
 {
+	if (b == 0)
+	{
+	printf("Error\n");
+	exit(100);
+	}
 	return (a % b);
 }
