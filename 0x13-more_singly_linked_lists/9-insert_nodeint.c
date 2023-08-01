@@ -1,46 +1,41 @@
 #include "lists.h"
 
 /**
- * insert_nodeint_at_index - a func displayn new node end position
+ * insert_nodeint_at_index - a function that inserts
+ * a new node at a given position
+ * @head: the head of the list
+ * @idx: the index of the list where the new node should be added
+ * @n: integer
  *
- * @head: ptr to the first node
- * @idx: is a index list new node
- * @n:element to add new node
- *
- * Return: NULL if all fail
+ * Return: the address of the new node, NULL if it failed
  */
+
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	listint_t *s, *q;
-	unsigned int far;
+	listint_t *newn, *c = *head;
+	unsigned int i = 0;
 
-	q = *head;
-
-	s = malloc(sizeof(listint_t));
-	if ((*head == NULL && idx != 0) || s == NULL)
-		return (NULL);
-
-	s->n = n;
-
-	for (far = 0; head != NULL && far < idx - 1; far++)
-	{
-		q = q->next;
-		if (q == NULL)
-			return (NULL);
-	}
-
+	newn = malloc(sizeof(listint_t));
+	if (newn == NULL)
+	return (0);
+	else
+	newn->n = n;
 	if (idx == 0)
 	{
-
-		s->next = *head;
-
-		*head = s;
+	newn->next = c;
+	*head = newn;
+	return (newn);
 	}
-	else if (q->next)
+
+	for (; i < (idx - 1); i++)
 	{
-		s->next = NULL;
-		q->next = s;
-	}
+	if (c == NULL || c->next == NULL)
+	return (NULL);
 
-	return (s);
+	c = c->next;
+	}
+	newn->next = c->next;
+	c->next = newn;
+
+	return (newn);
 }
